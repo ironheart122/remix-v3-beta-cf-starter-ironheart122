@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+blockExoticSubdeps: true
+minimumReleaseAgeExclude:
+  - '@types/*'
+  - 'remix'

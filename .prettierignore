@@ -1,0 +1,13 @@
+node_modules
+pnpm-lock.yaml
+.DS_Store
+
+# Build / generated output
+dist/
+build/
+.output/
+.wrangler/
+.cache/
+coverage/
+
+/app/db/migrations/
