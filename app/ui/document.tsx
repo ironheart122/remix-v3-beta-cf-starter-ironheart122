@@ -1,8 +1,6 @@
 import type { Handle, RemixNode } from 'remix/ui'
 import { css } from 'remix/ui'
 
-import { routes } from '../routes.ts'
-
 export interface DocumentProps {
   children?: RemixNode
   head?: RemixNode
@@ -10,6 +8,9 @@ export interface DocumentProps {
 }
 
 const DEFAULT_TITLE = readAppDisplayName('My%20Remix%20App')
+
+// Dev: Vite serves the unbundled entry. Prod: the built bundle from vite build.
+const CLIENT_ENTRY_SRC = import.meta.env.DEV ? '/client.ts' : '/assets/client.js'
 
 export function Document(handle: Handle<DocumentProps>) {
   return () => {
@@ -26,7 +27,7 @@ export function Document(handle: Handle<DocumentProps>) {
         </head>
         <body mix={css({ margin: 0 })}>
           {children}
-          <script type="module" src={routes.assets.href({ path: 'app/assets/entry.ts' })}></script>
+          <script type="module" src={CLIENT_ENTRY_SRC}></script>
         </body>
       </html>
     )

@@ -2,3 +2,5 @@ node_modules/
 db/*.sqlite
 tmp/
 .DS_Store
+dist/
+.wrangler/

@@ -2,9 +2,9 @@
   "compilerOptions": {
     "strict": true,
     "lib": ["ES2024", "DOM", "DOM.Iterable"],
-    "types": ["node"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "types": ["node", "vite/client"],
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
     "target": "ESNext",
     "allowImportingTsExtensions": true,
     "rewriteRelativeImportExtensions": true,
@@ -15,5 +15,5 @@
     "jsxImportSource": "remix/ui",
     "noEmit": true
   },
-  "exclude": ["dist"]
+  "exclude": ["dist", ".wrangler"]
 }

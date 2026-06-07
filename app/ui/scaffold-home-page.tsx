@@ -2,7 +2,7 @@
 import type { Handle, RemixNode } from 'remix/ui'
 import { css } from 'remix/ui'
 
-import { PromptButton } from '../assets/prompt-button.tsx'
+import { PromptButton } from './prompt-button.tsx'
 import { Document } from './document.tsx'
 
 const FONT_STACK =

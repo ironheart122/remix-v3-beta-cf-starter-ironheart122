@@ -7,17 +7,18 @@ type CopyState = 'idle' | 'copied' | 'failed' | 'resetting'
 
 interface PromptButtonProps extends SerializableProps {
   text: string
-  code?: string
 }
 
 // This component hydrates independently; the rest of the page stays static HTML.
+// The entry id is the browser module path (matched by client.ts's import.meta.glob)
+// plus the exported name after '#'.
 export const PromptButton = clientEntry(
-  import.meta.url,
+  '/app/ui/prompt-button.tsx#PromptButton',
   function PromptButton(handle: Handle<PromptButtonProps>) {
     let state: CopyState = 'idle'
 
     return () => {
-      let promptLabel = `\u201C${handle.props.text}\u201D`
+      let promptLabel = `“${handle.props.text}”`
       let label =
         state === 'copied' || state === 'resetting'
           ? 'Copied to clipboard'
@@ -39,9 +40,7 @@ export const PromptButton = clientEntry(
             on('click', async (_event, signal) => {
               try {
                 await navigator.clipboard.writeText(handle.props.text)
-                if (signal.aborted) {
-                  return
-                }
+                if (signal.aborted) return
               } catch {
                 state = 'failed'
                 await handle.update()
